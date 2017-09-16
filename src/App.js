@@ -4,8 +4,11 @@ import _ from 'lodash'
 import Cosmic from 'cosmicjs'
 import Submissions from './Partials/Submissions'
 import Form from './Partials/Form'
+import { Form as CosmicForm } from 'compounds'
 import Installation from './Partials/Installation'
 import config from './config'
+import S from 'shorti'
+import helpers from './helpers'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -27,6 +30,8 @@ class App extends Component {
       data.cosmic = cosmic
       data.data_loaded = true
       data.current_tab = 'Form Submissions'
+      if (!data.form_submissions)
+        data.current_tab = 'Form Fields'
       const objects = cosmic.objects
       data.form_submissions = objects.type['form-submissions']
       if (cosmic.object['contact-form'])
@@ -74,12 +79,11 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault()
     const data = this.state.data
-    const first_name = _.find(data.form_elements, { key: 'first_name'}).value
-    const last_name = _.find(data.form_elements, { key: 'last_name'}).value
-    if (!first_name.trim())
+    const name = _.find(data.form_elements, { key: 'name'}).value
+    if (!name.trim())
       return alert('You need to add at least a first name')
     const object = {
-      title: `${first_name} ${last_name}`,
+      title: `${name}`,
       type_slug: 'form-submissions',
       metafields: data.form_elements
     }
@@ -129,6 +133,26 @@ class App extends Component {
       return this.getError()
     if (!data.data_loaded)
       return this.getLoading()
+    // If form is true
+    if (helpers.getParameterByName('form') === 'true' && !data.show_success_modal) {
+      const cosmicform = data.cosmic.object['contact-form']
+      return (
+        <div style={ S('p-20') }>
+          <CosmicForm
+            form_elements={ data.form_elements }
+            submit_button_text={ cosmicform.metadata.submit_button_text }
+            handleSubmit={ this.handleSubmit.bind(this) }
+            handleChange={ this.handleChange.bind(this) }
+            loading={ data.is_submitting }
+          />
+          <div style={ S('mt-30 pull-right') }>
+            <a href={`https://cosmicjs.com/?ref=contact-form-extension&bucket_slug=${config.bucket.slug}`} target="_parent">
+              <img src="https://cosmicjs.com/images/logo.svg" width="30" height="30" style={ S('mb-10n mr-10') }/>Proudly Powered by Cosmic JS
+            </a>
+          </div>
+        </div>
+      )
+    }
     return (
       <div style={{ padding: 15 }}>
         <h1>Contact Form</h1>
@@ -147,7 +171,7 @@ class App extends Component {
               <p>{ data.cosmic.object['contact-form'].metadata.success_message_body }</p>
             </Modal.Content>
             <Modal.Actions>
-              <Button color='green' inverted onClick={ this.props.closeModal }>
+              <Button color='green' inverted onClick={ this.handleModalClose.bind(this) }>
                 <Icon name='checkmark' /> Ok
               </Button>
             </Modal.Actions>

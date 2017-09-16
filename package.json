@@ -15,10 +15,12 @@
     "copy-to-clipboard": "^3.0.6",
     "cosmicjs": "^2.39.0",
     "lodash": "^4.17.4",
-    "react": "^15.5.4",
+    "react": "^15.6.1",
+    "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.5.4",
     "react-prism": "^4.1.0",
-    "semantic-ui-react": "^0.68.3"
+    "semantic-ui-react": "^0.68.3",
+    "shorti": "^1.2.6"
   },
   "scripts": {
     "start": "react-scripts start",
