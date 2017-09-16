@@ -1,5 +1,5 @@
 # Contact Form
-![Contact Form](https://cosmicjs.imgix.net/de2a2c80-9b34-11e7-b535-f98e7a50bba9-Screen%20Shot%202017-09-16%20at%206.14.24%20PM.png)
+![Contact Form](https://cosmicjs.com/uploads/1976fd90-9b35-11e7-aa39-19017676b918-contact-form.png)
 A Cosmic JS Extension that can be added to your Bucket for easy contact form management.  Built using [Create React App](https://github.com/facebookincubator/create-react-app).  Easily add / edit form fields and manage contact form submissions in a table view.
 ## Getting Started
 To add this Extension to your Bucket simply install it from Your Bucket > Extensions > Browse Extensions
