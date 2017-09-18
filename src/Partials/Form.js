@@ -40,7 +40,7 @@ export default class FormExample extends Component {
           <Input onFocus={this.handleFocus} style={ S('w-100p mb-10') } value={ iframe } />
           <CopyToClipboard text={ iframe }
             onCopy={() => this.setState({copied: true})}>
-            <Button><Icon color={ this.state.copied ? 'green' : 'gray' } name={ this.state.copied ? 'checkmark' : 'clipboard' }/>&nbsp;&nbsp;{ this.state.copied ? 'Copied' : 'Copy' }</Button>
+            <Button><Icon color={ this.state.copied ? 'green' : 'grey' } name={ this.state.copied ? 'checkmark' : 'clipboard' }/>&nbsp;&nbsp;{ this.state.copied ? 'Copied' : 'Copy' }</Button>
           </CopyToClipboard>
         </div>
       </div>

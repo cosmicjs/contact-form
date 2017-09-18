@@ -30,10 +30,10 @@ class App extends Component {
       data.cosmic = cosmic
       data.data_loaded = true
       data.current_tab = 'Form Submissions'
-      if (!data.form_submissions)
-        data.current_tab = 'Form Fields'
       const objects = cosmic.objects
       data.form_submissions = objects.type['form-submissions']
+      if (!data.form_submissions)
+        data.current_tab = 'Form Builder'
       if (cosmic.object['contact-form'])
         data.form_elements = cosmic.object['contact-form'].metafield.form_elements.children
       this.setState({
@@ -112,7 +112,7 @@ class App extends Component {
       return <Installation data={ data }/>
     if (data.current_tab === 'Form Submissions')
       return <Submissions showSubmissionModal={ this.showSubmissionModal.bind(this) } data={ this.state.data }/>
-    if (data.current_tab === 'Form Fields')
+    if (data.current_tab === 'Form Builder')
       return <Form data={ this.state.data } handleChange={ this.handleChange.bind(this) } handleSubmit={ this.handleSubmit.bind(this) }/>
   }
   handleModalClose() {
@@ -159,7 +159,7 @@ class App extends Component {
         {
           data.cosmic.object['contact-form'] &&<Menu tabular>
           <Menu.Item name='Form Submissions' active={data.current_tab === 'Form Submissions'} onClick={this.handleItemClick.bind(this)} />
-            <Menu.Item name='Form Fields' active={data.current_tab === 'Form Fields'} onClick={this.handleItemClick.bind(this)} />
+            <Menu.Item name='Form Builder' active={data.current_tab === 'Form Builder'} onClick={this.handleItemClick.bind(this)} />
           </Menu>
         }
         { this.getContent() }

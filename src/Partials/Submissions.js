@@ -31,7 +31,7 @@ export default class Submissions extends Component {
                 data.form_submissions.map(object => {
                   return (
                     <Table.Row key={ object.slug }>
-                      <Table.Cell style={{ cursor: 'pointer' }} onClick={ this.props.showSubmissionModal.bind(this, object) }>{ object.metadata.first_name } { object.metadata.last_name }</Table.Cell>
+                      <Table.Cell style={{ cursor: 'pointer' }} onClick={ this.props.showSubmissionModal.bind(this, object) }>{ object.metadata.name }</Table.Cell>
                       <Table.Cell style={{ cursor: 'pointer' }} onClick={ this.props.showSubmissionModal.bind(this, object) }>{ object.metadata.email }</Table.Cell>
                       <Table.Cell style={{ cursor: 'pointer' }} onClick={ this.props.showSubmissionModal.bind(this, object) }>{ this.getTime(object.created) }</Table.Cell>
                     </Table.Row>
@@ -43,7 +43,7 @@ export default class Submissions extends Component {
         }
         {
           !data.form_submissions &&
-          <Message>No submissions yet.  Go to the Form Fields tab to add the code to your website</Message>
+          <Message>No submissions yet.  Go to the Form Builder tab to add the code to your website</Message>
         }
       </div>
     )
