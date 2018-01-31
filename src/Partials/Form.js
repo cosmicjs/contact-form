@@ -22,7 +22,7 @@ export default class FormExample extends Component {
           <h3>
             How it will look
             <div style={ S('pull-right font-12') }>
-              <a target="_parent" href={`https://cosmicjs.com/${config.bucket.slug}/edit-object/contact-form`}><Icon name="pencil"/>Edit Form Fields</a>
+              <a target="_parent" href={`https://cosmicjs.com/${config.bucket.slug}/edit-object/${cosmicform._id}`}><Icon name="pencil"/>Edit Form Fields</a>
             </div>
           </h3>
           <Form
